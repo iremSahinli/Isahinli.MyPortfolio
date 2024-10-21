@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MyPortfolio.DAL.Entities;
 
 namespace MyPortfolio.DAL.Contect
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
-        private readonly IConfiguration _configuration;
-
-        public AppDbContext(IConfiguration configuration)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            _configuration = configuration;
         }
 
         public DbSet<Feature> Features { get; set; }
@@ -21,15 +20,12 @@ namespace MyPortfolio.DAL.Contect
         public DbSet<Testmonial> Testmonials { get; set; }
 
 
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var connectionString = _configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
-            }
+            base.OnModelCreating(modelBuilder);
+           
         }
+
+
     }
 }
