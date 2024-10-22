@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.Areas.Admin.Models;
 
 namespace MyPortfolio.Areas.Admin.Controllers
 {
-    public class AccountController : AdminBaseController
+    [Area("Admin")]
+
+    public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -19,6 +22,11 @@ namespace MyPortfolio.Areas.Admin.Controllers
 
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+
+            }
             return View();
         }
 
@@ -60,6 +68,15 @@ namespace MyPortfolio.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
 
+        }
+
+
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account", new { area = "Admin" });
         }
     }
 }

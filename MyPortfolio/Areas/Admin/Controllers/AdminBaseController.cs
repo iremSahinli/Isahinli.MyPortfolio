@@ -7,7 +7,7 @@ namespace MyPortfolio.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminBaseController : Controller
     {
-       
-      
+
+
     }
 }
