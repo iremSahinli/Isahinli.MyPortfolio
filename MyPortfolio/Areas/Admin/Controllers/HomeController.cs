@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MyPortfolio.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
-    public class HomeController : AdminBaseController
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
