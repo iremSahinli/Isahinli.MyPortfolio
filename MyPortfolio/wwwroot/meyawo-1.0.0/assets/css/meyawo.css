@@ -11881,7 +11881,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1300 - 300)));
+    font-size: calc(11px + (15 - 13) * ((100vw - 300px) / (1300 - 300)));
     font-weight: 100;
     opacity: 1;
     color: #212529;
@@ -11894,12 +11894,9 @@ p {
 }
 
 .title {
-    font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1300 - 300)));
+    font-size: calc(12px + (20 - 15) * ((100vw - 300px) / (1300 - 300))) !important;
 }
 
-    .title.big {
-        font-size: calc(17px + (25 - 17) * ((100vw - 300px) / (1300 - 300)));
-    }
 
 .mb-6 {
     margin-bottom: 4rem !important;
@@ -12106,7 +12103,7 @@ p {
 
 .pricing-wrapper .pricing-card-title {
     margin-bottom: 15px;
-    font-size: calc(18px + (35 - 18) * ((100vw - 300px) / (1300 - 300)));
+    font-size: calc(-2px + (35 - 18) * ((100vw - 300px) / (1300 - 300)));
 }
 
 .pricing-wrapper .pricing-card-list p {
@@ -12440,7 +12437,7 @@ pre {
 .custom-navbar .logo {
     font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1300 - 300)));
     text-decoration: none;
-    color: #2dce89;
+    color: #393e46;
 }
 
 .custom-navbar .container {
@@ -12803,8 +12800,11 @@ pre {
     .footer a, .footer p {
         color: #393e46;
         padding: 4px 0;
-        display: inline-block;
+        display: flex;
         margin: 0;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:nowrap;
     }
 
     .footer .brand {
@@ -13012,6 +13012,19 @@ pre {
     }
 }
 
+.social-links-container {
+    display: flex;
+    margin-right: 5px;
+    justify-content: flex-start;
+    align-items:flex-end;
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Geçiş efekti ekler */
+}
+
+    .social-links-container a:hover img {
+        transform: scale(0.8); /* Görseli büyütür */
+        box-shadow: 0px 0px 8px rgba(0, 128, 0, 0.6);
+    }
+
 /* sections */
 .section {
     padding: 50px 10px;
@@ -13019,6 +13032,7 @@ pre {
 
     .section .section-title {
         font-size: 20px;
+        
     }
 
     .section .section-subtitle {
