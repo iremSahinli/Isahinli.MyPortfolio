@@ -1,18 +1,17 @@
-﻿<section class="section" id="contact">
+﻿<<section class="section" id="contact">
     <div class="container text-center">
         <h6 class="section-title mb-5">Düşüncelerini Benimle Paylaşmak İstermisin?</h6>
         <!-- contact form -->
-        <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+        <form asp-action="SendMessage" asp-controller="Contact" method="post" class="contact-form col-md-10 col-lg-8 m-auto">
             <div class="form-row">
                 <div class="form-group col-sm-6">
-                    <input type="text" size="50" class="form-control" placeholder="İsim" required>
+                    <input type="text" name="FirstName" class="form-control" placeholder="İsim" required>
                 </div>
                 <div class="form-group col-sm-6">
-                    <input type="email" class="form-control" placeholder="Email" requried>
+                    <input type="email" name="Email" class="form-control" placeholder="Email" required>
                 </div>
                 <div class="form-group col-sm-12">
-                    <textarea name="comment" id="comment" rows="6" class="form-control"
-                              placeholder="Bu Alana Yazabilirsin."></textarea>
+                    <textarea name="Message" rows="6" class="form-control" placeholder="Bu Alana Yazabilirsin." required></textarea>
                 </div>
                 <div class="form-group col-sm-12 mt-3">
                     <input type="submit" value="Send Message" class="btn btn-outline-success rounded">
