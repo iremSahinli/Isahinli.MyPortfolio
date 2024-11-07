@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyPortfolio.DAL.Contect;
 using MyPortfolio.DAL.Entities;
 
@@ -15,8 +16,6 @@ namespace MyPortfolio.Controllers
 
         public async Task<IActionResult> SendMessage(Contact contact)
         {
-
-
             try
             {
                 if (ModelState.IsValid)
@@ -24,6 +23,15 @@ namespace MyPortfolio.Controllers
                     contact.SentDate = DateTime.Now;
                     contact.IsMessageRead = false;
                     await _context.Contacts.AddAsync(contact);
+
+                    var testimonial = new Testimonial
+                    {
+                        FullName = contact.FirstName,
+                        SentDate = contact.SentDate,
+                        Description = contact.Message,
+                    };
+                    await _context.Testimonials.AddAsync(testimonial);
+
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index", "Portfolio");
                 }
@@ -34,6 +42,12 @@ namespace MyPortfolio.Controllers
 
                 return View("Index", "Portfolio");
             }
+
+
+
+
+
+
 
         }
     }

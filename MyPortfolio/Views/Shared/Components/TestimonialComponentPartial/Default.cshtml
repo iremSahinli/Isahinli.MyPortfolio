@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MyPortfolio.DAL.Entities.Testimonial>
+
+<!-- testimonial section -->
+<section class="section" id="testmonial">
+    <div class="container text-center">
+
+        <h6 class="section-title mb-6">Portföyüm Hakkında Düşüncelerin Neler?</h6>
+            @if (Model == null || !Model.Any())
+            {
+                <p>Henüz bir yorum bulunmamaktadır.</p>
+            }
+            else
+            {
+
+
+                <!-- row -->
+                <div class="row">
+                    @foreach (var testimonial in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="testimonial-card">
+                                <div class="testimonial-card-body">
+                                    <h6>@testimonial.SentDate.ToString("dd.MM.yyyy")</h6>
+                                    <p class="testimonial-card-subtitle">
+                                        @testimonial.Description
+                                    </p>
+                                    <h6 class="testimonial-card-title">@testimonial.FullName</h6>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div><!-- end of container -->
+</section> <!-- end of testimonial section -->

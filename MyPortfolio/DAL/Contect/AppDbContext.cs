@@ -17,7 +17,7 @@ namespace MyPortfolio.DAL.Contect
         public DbSet<Project> Projects { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
-        public DbSet<Testmonial> Testmonials { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
