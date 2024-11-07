@@ -12157,7 +12157,7 @@ p {
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
+    display: grid;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -12182,7 +12182,7 @@ p {
 .testimonial-card-body {
     text-align: left;
     border: 1px solid #dee2e6;
-    background: #fff;
+    background: #f8f9fa;
     padding: 20px 20px 20px 60px;
     border-radius: 0;
 }
@@ -12190,6 +12190,7 @@ p {
 .testimonial-card-title {
     margin-top: 20px;
     font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1300 - 300)));
+    color: #212529;
 }
 
 /* blog wrapper */
