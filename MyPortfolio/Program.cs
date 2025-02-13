@@ -3,19 +3,22 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyPortfolio.DAL.Contect;
+using MyPortfolio.Repositories.Concretes;
+using MyPortfolio.Repositories.Interfaces;
 using MyPortfolio.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
 
 // DbContext:
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-//Admn giriþi için IdentityUser ve Role eklemesi:
+//Admn girişi için IdentityUser ve Role eklemesi:
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
