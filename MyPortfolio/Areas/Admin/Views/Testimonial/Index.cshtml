@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminTestimonialVM>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4">Testimonials</h5>
+
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FullName)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SentDate)</th>
+                            @* <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IsMessageRead)</th> *@
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@item.SentDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", "Testimonial", new { id = item.TestimonialId }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                                @* <td>
+                                    @if (item.IsMessageRead)
+                                    {
+                                        <span class="badge badge-success">Read</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning">Unread</span>
+                                    }
+                                </td> *@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
