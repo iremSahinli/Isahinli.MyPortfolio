@@ -31,5 +31,16 @@ namespace MyPortfolio.Areas.Admin.Controllers
             }).ToList();
             return View(testimonialVm);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var testimonial = await _testimonialRepository.DeleteTestimonial(id);
+            if (testimonial == null)
+            {
+                return NotFound();
+            }
+            
+            return RedirectToAction("Index");
+        }
     }
 }

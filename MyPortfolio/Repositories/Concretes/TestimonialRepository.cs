@@ -19,13 +19,27 @@ namespace MyPortfolio.Repositories.Concretes
             return await _context.Testimonials.ToListAsync();
         }
 
-        public Task<Testimonial> GetTestimonialById(int testimonialId)
+        public async Task<Testimonial> GetTestimonialId(int testimonialId)
         {
-            throw new NotImplementedException();
+            var testimonial = await _context.Testimonials.FindAsync(testimonialId);
+            return testimonial;
         }
-        public Task<Testimonial> DeleteTestimonial(int testimonialId)
+        public async Task<Testimonial> DeleteTestimonial(int testimonialId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var testimonial = await _context.Testimonials.FirstOrDefaultAsync(t => t.TestimonialId == testimonialId);
+                if (testimonial != null)
+                {
+                    _context.Testimonials.Remove(testimonial);
+                    await _context.SaveChangesAsync();
+                }
+                return testimonial;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }
