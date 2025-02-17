@@ -9,11 +9,15 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div class="container mt-4">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h5 class="card-title text-center mb-4">Testimonials</h5>
+                <h5 class="card-title text-left mb-4">Testimonials</h5>
 
                 <table class="table table-hover table-bordered">
                     <thead class="thead-dark">
@@ -32,9 +36,12 @@
                                 <td>@Html.DisplayFor(modelItem => item.FullName)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                                 <td>@item.SentDate.ToString("dd/MM/yyyy")</td>
-                                <td>
-                                    @Html.ActionLink("Delete", "Delete", "Testimonial", new { id = item.TestimonialId }, new { @class = "btn btn-danger btn-sm" })
+                                <td class="deleteButton">
+                                    @Html.ActionLink("Delete", "Delete", "Testimonial",
+                                             new { id = item.TestimonialId },
+                                             new { @class = "btn btn-danger btn-sm delete-btn" })
                                 </td>
+
                                 @* <td>
                                     @if (item.IsMessageRead)
                                     {
@@ -58,3 +65,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+<style>
+    .delete-btn {
+        box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5); /* Kırmızı gölge */
+        transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+        .delete-btn:hover {
+            animation: blink 0.8s infinite alternate;
+        }
+
+    @@keyframes blink {
+        0% {
+            background-color: red;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.8);
+        }
+
+        100% {
+            background-color: darkred;
+            box-shadow: 0 4px 16px rgba(255, 0, 0, 1);
+        }
+    }
+</style>
