@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 // DbContext:
 builder.Services.AddDbContext<AppDbContext>(options =>

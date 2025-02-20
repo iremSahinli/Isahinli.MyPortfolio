@@ -1,0 +1,54 @@
+﻿@model MyPortfolio.Areas.Admin.Models.AdminProjectVMs.AdminProjectUpdateVM
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <hr />
+    <hr />
+    <hr />
+    <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+            <h4>Update Project</h4>
+            <form asp-action="Update">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+                <input type="hidden" asp-for="ProjectId" />
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubTitle" class="control-label"></label>
+                    <input asp-for="SubTitle" class="form-control" />
+                    <span asp-validation-for="SubTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProjectDescription" class="control-label"></label>
+                    <input asp-for="ProjectDescription" class="form-control" />
+                    <span asp-validation-for="ProjectDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProjectUrl" class="control-label"></label>
+                    <input asp-for="ProjectUrl" class="form-control" />
+                    <span asp-validation-for="ProjectUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-success" />
+                    <input type="submit" asp-area="Admin" asp-controller="Project" asp-action="Index" value="Back To List" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
