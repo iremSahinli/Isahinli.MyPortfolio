@@ -1,10 +1,10 @@
-﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminProjectVMs.AdminProjectListVM>
+﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminSkillVMs.AdminSkillListVM>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Skills</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -18,21 +18,18 @@
                 <!-- Responsive yapı ve merkezleme -->
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title text-left mb-4">Projects</h5>
+                        <h5 class="card-title text-left mb-4">Skills</h5>
 
                         <div class="table-responsive">
                             <!-- Mobil uyumlu tablo -->
                             <div class="d-flex justify-content-start mb-4">
-                                <a href="@Url.Action("Create", "Project")" class="btn btn-success btn-xs create-btn">Create</a>
+                                <a href="@Url.Action("Create", "Skill")" class="btn btn-success btn-xs create-btn">Create</a>
                             </div>
                             <table class="table table-hover table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ProjectId)</th>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
-                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SubTitle)</th>
-                                        <th class="desc-column">@Html.DisplayNameFor(model => model.FirstOrDefault().ProjectDescription)</th>
-                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ProjectUrl)</th>
+                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SkillDescription)</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -40,14 +37,11 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(itemModel => item.ProjectId)</td>
                                             <td>@Html.DisplayFor(itemModel => item.Title)</td>
-                                            <td>@Html.DisplayFor(itemModel => item.SubTitle)</td>
-                                            <td class="desc-column">@Html.DisplayFor(itemModel => item.ProjectDescription)</td>
-                                            <td>@Html.DisplayFor(itemModel => item.ProjectUrl)</td>
+                                            <td>@Html.DisplayFor(itemModel => item.SkillDescription)</td>                                           
                                             <td class="action-buttons">
-                                                <a href="@Url.Action("Update", "Project", new { id = item.ProjectId })" class="btn btn-warning btn-sm update-btn">Update</a>
-                                                <a href="@Url.Action("Delete", "Project", new { id = item.ProjectId })" class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                                <a href="@Url.Action("Update", "Skill", new { id = item.SkillId })" class="btn btn-warning btn-sm update-btn">Update</a>
+                                                <a href="@Url.Action("Delete", "Skill", new { id = item.SkillId })" class="btn btn-danger btn-sm delete-btn">Delete</a>
                                             </td>
                                         </tr>
                                     }
@@ -94,7 +88,7 @@
     /* Create Butonu */
     .create-btn {
         box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5);
-        flex: none;
+        flex: none;  
         padding: 5px 10px; /* İç boşluk */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
