@@ -1,70 +1,53 @@
-﻿ <!-- pricing section -->
-<section class="section" id="pricing">
-    <div class="container text-center">
-        <h6 class="section-title mb-5">Kullandığım Teknolojiler</h6>
-        <!-- row -->
-        <div class="pricing-wrapper">
-            <div class="pricing-card">
-                <div class="pricing-card-header">
-                    <img class="pricing-card-icon" src="/meyawo-1.0.0/assets/imgs/Tecnology.png"
-                         alt="Programlama Dilleri">
-                </div>
-                <div class="pricing-card-body">
-                    <h6 class="pricing-card-title">Backend</h6>
-                    <div class="pricing-card-list">
-                        <p>C#</p>
-                        <p>Phyton</p>
-                        <p>Entity Framework Core</p>
-                        <p>ASP.NET Core</p>
-                        <p>ASP.NET Core Identity</p>
-                        <p>Microsoft SQL Server (SSMS 19)</p>
-                        <p>RESTful API, Web API</p>
-                        <p>JSON, Swagger</p>
-                       
-                    </div>
-                </div>
-               
-            </div>
+﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminSkillVMs.AdminSkillListVM>
 
-            <div class="pricing-card">
-                <div class="pricing-card-header">
-                    <img class="pricing-card-icon" src="/meyawo-1.0.0/assets/imgs/Tecnology.png"
-                         alt="Frontend Teknolojileri">
-                </div>
-                <div class="pricing-card-body">
-                    <h5 class="pricing-card-title">Frontend</h5>
-                    <div class="pricing-card-list">
-                        <p>HTML5</p>
-                        <p>CSS3</p>
-                        <p>JavaScript</p>
-                        <p>Bootstrap</p>
-                        <p>React</p>
-                        <p>jQuery</p>
-                        
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <div class="pricing-card-header">
-                    <img class="pricing-card-icon" src="/meyawo-1.0.0/assets/imgs/Tecnology.png"
-                         alt="Yazılım Geliştirme Prensipleri">
-                </div>
-                <div class="pricing-card-body">
-                    <h6 class="pricing-card-title">Yazılım Geliştirme Prensipleri ve Tasarımlar</h6>
-                    <div class="pricing-card-list">
-                        <p>Katmanlı Mimari (Layered Architecture)</p>
-                        <p>Nesne Yönelimli Programlama (OOP)</p>
-                        <p>Dependency Injection</p>
-                        <p>Repository Pattern</p>
-                        <p>JWT (JSON Web Token)</p>
-                        <p>Code First & Migrations</p>
-                        <p>Change Tracker API</p>
-                       
-                    </div>
-                </div>
-            </div>
 
-        </div><!-- end of pricing wrapper -->
-    </div> <!-- end of container -->
-</section><!-- end of pricing section -->
+@if (Model != null)
+{
+    var backendSkills = Model.Where(s => s.SkillDescription == "Backend").ToList();
+    var frontendSkills = Model.Where(s => s.SkillDescription == "Frontend").ToList();
+
+    <!-- pricing section -->
+    <section class="section" id="pricing">
+        <div class="container text-center">
+            <h6 class="section-title mb-5">Kullandığım Teknolojiler</h6>
+            <!-- row -->
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="/meyawo-1.0.0/assets/imgs/Tecnology.png"
+                             alt="Backend Teknolojileri">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Backend</h6>
+                        <div class="pricing-card-list">
+                            @foreach (var skill in backendSkills)
+                            {
+                                <p>@skill.Title</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="/meyawo-1.0.0/assets/imgs/Tecnology.png"
+                             alt="Frontend Teknolojileri">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Frontend</h6>
+                        <div class="pricing-card-list">
+                            @foreach (var skill in frontendSkills)
+                            {
+                                <p>@skill.Title</p>
+                            }
+                        </div>
+                    </div>
+
+
+            </div><!-- end of pricing wrapper -->
+        </div> <!-- end of container -->
+    </section>
+}
+else
+{
+    
+}
