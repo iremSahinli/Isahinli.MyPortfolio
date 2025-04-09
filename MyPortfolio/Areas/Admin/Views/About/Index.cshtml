@@ -1,10 +1,12 @@
-﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminSkillVMs.AdminSkillListVM>
-<!DOCTYPE html>
+﻿@model IEnumerable<MyPortfolio.Areas.Admin.Models.AdminAboutVMs.AdminAboutListVM>
+
+
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills</title>
+    <title>Projects</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -15,21 +17,22 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-5 col-md-12 mx-auto">
+            <div class="col-lg-10 col-md-12 mx-auto">
                 <!-- Responsive yapı ve merkezleme -->
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title text-left mb-4">Skills</h5>
+                        <h5 class="card-title text-left mb-4">Projects</h5>
+
                         <div class="table-responsive">
                             <!-- Mobil uyumlu tablo -->
                             <div class="d-flex justify-content-start mb-4">
-                                <a href="@Url.Action("Create", "Skill")" class="btn btn-success btn-xs create-btn">Create</a>
+                                <a href="@Url.Action("Create", "About")" class="btn btn-success btn-xs create-btn">Create</a>
                             </div>
                             <table class="table table-hover table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
-                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SkillDescription)</th>
+                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SubDescription)</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -38,10 +41,10 @@
                                     {
                                         <tr>
                                             <td>@Html.DisplayFor(itemModel => item.Title)</td>
-                                            <td>@Html.DisplayFor(itemModel => item.SkillDescription)</td>                                           
+                                            <td>@Html.DisplayFor(itemModel => item.SubDescription)</td>
                                             <td class="action-buttons">
-                                                <a href="@Url.Action("Update", "Skill", new { id = item.SkillId })" class="btn btn-warning btn-sm update-btn">Update</a>
-                                                <a href="@Url.Action("Delete", "Skill", new { id = item.SkillId })" class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                                <a href="@Url.Action("Update", "About", new { id = item.AboutId })" class="btn btn-warning btn-sm update-btn">Update</a>
+                                                <a href="@Url.Action("Delete", "About", new { id = item.AboutId })" class="btn btn-danger btn-sm delete-btn">Delete</a>
                                             </td>
                                         </tr>
                                     }
@@ -53,7 +56,9 @@
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

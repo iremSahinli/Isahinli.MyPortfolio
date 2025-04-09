@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MyPortfolio.DAL.Contect;
 using MyPortfolio.Repositories.Concretes;
 using MyPortfolio.Repositories.Interfaces;
@@ -14,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+builder.Services.AddScoped<IAboutRepository, AboutRepository>();
 
 // DbContext:
 builder.Services.AddDbContext<AppDbContext>(options =>

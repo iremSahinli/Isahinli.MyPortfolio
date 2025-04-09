@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <br />
@@ -28,7 +29,6 @@
                             <table class="table table-hover table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ProjectId)</th>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SubTitle)</th>
                                         <th class="desc-column">@Html.DisplayNameFor(model => model.FirstOrDefault().ProjectDescription)</th>
@@ -40,7 +40,6 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(itemModel => item.ProjectId)</td>
                                             <td>@Html.DisplayFor(itemModel => item.Title)</td>
                                             <td>@Html.DisplayFor(itemModel => item.SubTitle)</td>
                                             <td class="desc-column">@Html.DisplayFor(itemModel => item.ProjectDescription)</td>
@@ -64,98 +63,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-<style>
-    /* Tablo ve kartın genişlemesini sağlayan yapı */
-    .container-fluid {
-        max-width: 90%;
-    }
-
-    .table-responsive {
-        width: 100%;
-    }
-
-    /* Butonları düzenleme */
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .update-btn, .delete-btn {
-        flex: 1;
-        text-align: center;
-        padding: 5px 10px; /* İç boşluk */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    }
-
-    /* Create Butonu */
-    .create-btn {
-        box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5);
-        flex: none;
-        padding: 5px 10px; /* İç boşluk */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    }
-
-        .create-btn:hover {
-            animation: blink-create 0.5s infinite alternate;
-        }
-
-    /* Update Butonu */
-    .update-btn {
-        box-shadow: 0 4px 8px rgba(255, 165, 0, 0.8);
-    }
-
-        .update-btn:hover {
-            animation: blink-update 0.5s infinite alternate;
-        }
-
-    /* Delete Butonu */
-    .delete-btn {
-        box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5);
-    }
-
-        .delete-btn:hover {
-            animation: blink-delete 0.8s infinite alternate;
-        }
-
-    /* Animasyonlar */
-    @@keyframes blink-create {
-        0% {
-            background-color: green;
-            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.8);
-        }
-
-        100% {
-            background-color: darkgreen;
-            box-shadow: 0 4px 16px rgba(0, 255, 0, 1);
-        }
-    }
-
-    @@keyframes blink-update {
-        0% {
-            background-color: orange;
-            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.8);
-        }
-
-        100% {
-            background-color: darkorange;
-            box-shadow: 0 4px 16px rgba(255, 165, 0, 1);
-        }
-    }
-
-    @@keyframes blink-delete {
-        0% {
-            background-color: red;
-            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.8);
-        }
-
-        100% {
-            background-color: darkred;
-            box-shadow: 0 4px 16px rgba(255, 0, 0, 1);
-        }
-    }
-</style>
