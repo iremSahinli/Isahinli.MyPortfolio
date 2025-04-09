@@ -1,0 +1,41 @@
+﻿@model MyPortfolio.Areas.Admin.Models.AdminAboutVMs.AdminAboutCreateVM
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <hr />
+    <hr />
+    <hr />
+    <div class="row">
+        <div class="col-lg-5 col-md-12 mx-auto">
+            <h4>New About</h4>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">Title</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubDescription" class="control-label">Sub Description</label>
+                    <textarea asp-for="SubDescription" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="SubDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-success btn-xs create-btn">Create</button>                        <a href="@Url.Action("Index", "About")" class="btn btn-danger btn-xs back-btn">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

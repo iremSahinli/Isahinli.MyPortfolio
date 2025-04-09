@@ -28,9 +28,8 @@
 
     <!-- Template Main CSS File -->
     <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
-
+    
 </head>
-
 <body>
 
     <!-- ======= Header ======= -->
@@ -44,10 +43,7 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
     </header><!-- End Header -->
-
        
-
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -55,7 +51,12 @@
 
             @if (User.Identity.IsAuthenticated)
             {
-
+                <li class="nav-item">
+                    <a class="nav-link collapsed" asp-area="Admin" asp-controller="About" asp-action="Index">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span>My About</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" asp-area="Admin" asp-controller="Testimonial" asp-action="Index">
                         <i class="ri-logout-box-r-line"></i>
@@ -85,21 +86,7 @@
         </ul>
 
     </aside><!-- End Sidebar-->
-
-           
-           
-
-           
-
-           
-
-          
-            
-
-          
-
-           
-
+    
     @RenderBody()
    
     
