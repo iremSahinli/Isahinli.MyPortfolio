@@ -60,7 +60,7 @@ public class SkillController : Controller
     public async Task<IActionResult> Delete(int id)
     {
         var deletingSkill = await _skillRepository.DeleteSkillAsync(id);
-        if (deletingSkill == null && deletingSkill.SkillId != id)
+        if (deletingSkill == null || deletingSkill.SkillId != id)
         {
             return View("Index");
         }
