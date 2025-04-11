@@ -1,0 +1,12 @@
+﻿@model int
+
+<li class="nav-item">
+    <a class="nav-link collapsed" asp-area="Admin" asp-controller="Testimonial" asp-action="Index">
+        <i class="ri-logout-box-r-line"></i>
+        <span>Messages</span>
+        @if (Model > 0)
+        {
+            <span class="badge bg-success ms-2">@Model</span>
+        }
+    </a>
+</li>

@@ -7,5 +7,6 @@ namespace MyPortfolio.Repositories.Interfaces
         Task<IEnumerable<Testimonial>> GetAllTestimonialsAsync();
         Task<Testimonial> GetTestimonialId(int testimonialId);
         Task<Testimonial> DeleteTestimonial(int testimonialId);
+        Task<int> GetUnreadTestimonialsAsync();
     }
 }

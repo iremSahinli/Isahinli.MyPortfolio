@@ -42,5 +42,10 @@ namespace MyPortfolio.Repositories.Concretes
             }
         }
 
+        public async Task<int> GetUnreadTestimonialsAsync()
+        {
+            var unreadTestimonials = await _context.Testimonials.CountAsync(t => !t.IsRead);
+            return unreadTestimonials;
+        }
     }
 }

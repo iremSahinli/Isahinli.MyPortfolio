@@ -1,0 +1,57 @@
+﻿@model MyPortfolio.Areas.Admin.Models.AdminTestimonialVM.AdminTestimonialDetailVM
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <dl class="row">
+        <div class="col-lg-5 col-md-12 mx-auto">
+            <h4>Testimonial Details</h4>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-4 mb-4">
+                            FullName:
+                        </dt>
+                        <dd class="col-8">
+                            @Html.DisplayFor(model => model.FullName)
+                        </dd>
+                        <dt class="col-4 mb-4">
+                            Description:
+                        </dt>
+                        <dd class="col-8">
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt class="col-4 mb-4">
+                            SentDate:
+                        </dt>
+                        <dd class="col-8">
+                            @Html.DisplayFor(model => model.SentDate)
+                        </dd>
+                        <dt class="col-4 mb-4">
+                            IsRead:
+                        </dt>
+                        <dd class="col-8">
+                            @Html.CheckBoxFor(model => model.IsRead, new { @disabled = "disabled" })
+                        </dd>
+                    </dl>
+                    <a href="@Url.Action("Index", "Testimonial")" class="btn btn-danger btn-sm delete-btn">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </dl>
+    <div>
+    </div>
+</body>
+</html>
