@@ -14,10 +14,11 @@ public class TestimonialComponentPartial : ViewComponent
         _context = context;
     }
 
-    
+
     public async Task<IViewComponentResult> InvokeAsync()
     {
         var testimonials = await _context.Testimonials
+                .Where(t => t.IsApproved)
                 .OrderByDescending(t => t.SentDate.Date)
                 .Take(4)
                 .ToListAsync();

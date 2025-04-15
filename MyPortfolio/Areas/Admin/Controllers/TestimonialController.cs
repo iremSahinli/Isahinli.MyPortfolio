@@ -31,7 +31,8 @@ public class TestimonialController : Controller
             FullName = model.FullName,
             Description = model.Description,
             SentDate = model.SentDate,
-            IsRead = model.IsRead ? true : false
+            IsRead = model.IsRead ? true : false,
+            IsApproved = model.IsApproved
         }).ToList();
         return View(testimonialVm);
     }
@@ -67,8 +68,22 @@ public class TestimonialController : Controller
             FullName = testimonial.FullName,
             Description = testimonial.Description,
             SentDate = testimonial.SentDate,
-            IsRead = true
+            IsRead = true,
+            IsApproved = testimonial.IsApproved
         };
         return View(testimonialVm);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ToogleApproval(int id, bool isApproved)
+    {
+        var testimonial = await _context.Testimonials.FirstOrDefaultAsync(t => t.TestimonialId == id);
+        if (testimonial == null)
+        {
+            return NotFound();
+        }
+        testimonial.IsApproved = isApproved;
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }
