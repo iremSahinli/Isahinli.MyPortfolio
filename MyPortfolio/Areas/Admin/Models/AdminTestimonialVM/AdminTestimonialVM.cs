@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public DateTime SentDate { get; set; }
         public bool IsRead { get; set; }
+        public bool IsApproved { get; set; } = false; //default
     }
 }

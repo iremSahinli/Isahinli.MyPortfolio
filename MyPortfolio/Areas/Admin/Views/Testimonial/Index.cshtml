@@ -27,6 +27,7 @@
                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Description)</th>
                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SentDate)</th>
                             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IsRead)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IsApproved)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -47,6 +48,15 @@
                                         <span class="badge badge-warning">Unread</span>
                                     }
                                 </td>
+                                <td>
+                                    @if (item.IsApproved)
+                                    {
+                                        <span class="badge badge-success">Onaylandı</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">Onaylanmadı</span>
+                                    }
                                 <td class="deleteButton">
                                     @Html.ActionLink("Details", "Details", "Testimonial",
                                              new { id = item.TestimonialId },

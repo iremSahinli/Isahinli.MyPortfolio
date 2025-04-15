@@ -1,6 +1,5 @@
 ﻿@model MyPortfolio.Areas.Admin.Models.AdminTestimonialVM.AdminTestimonialDetailVM
 
-
 <!DOCTYPE html>
 
 <html>
@@ -45,6 +44,12 @@
                         <dd class="col-8">
                             @Html.CheckBoxFor(model => model.IsRead, new { @disabled = "disabled" })
                         </dd>
+                        <dt class="col-4 mb-4">
+                            IsApproved:
+                        </dt>
+                        <dd class="col-8">
+                            <input type="checkbox" id="isApproved" data-id="@Model.TestimonialId" @(Model.IsApproved ? "checked" : "") />
+                        </dd>
                     </dl>
                     <a href="@Url.Action("Index", "Testimonial")" class="btn btn-danger btn-sm delete-btn">Back to List</a>
                 </div>
@@ -55,3 +60,25 @@
     </div>
 </body>
 </html>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#isApproved').on('change', function () {
+            var isChecked = $(this).is(':checked');
+            var id =$(this).data('id');
+
+            $.ajax({
+                url: '@Url.Action("ToogleApproval", "Testimonial", new { area = "Admin" })',
+                type: 'POST',
+                data: {id: id, isApproved: isChecked },
+                success: function () {
+                    alert("Onaylandı.");
+                },
+                error: function () {
+                    alert("Hata oluştu.");
+                }
+            });
+        });
+    </script>
+}
