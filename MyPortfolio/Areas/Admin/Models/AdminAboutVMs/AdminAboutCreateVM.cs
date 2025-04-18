@@ -4,4 +4,5 @@ public class AdminAboutCreateVM
 {
     public string Title { get; set; }
     public string SubDescription { get; set; }
+    public IFormFile? MyPhoto { get; set; }
 }

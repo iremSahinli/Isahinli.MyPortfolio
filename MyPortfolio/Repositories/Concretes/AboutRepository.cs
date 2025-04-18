@@ -16,14 +16,10 @@ public class AboutRepository : IAboutRepository
 
     public async Task<IEnumerable<About>> GetAllAbouts()
     {
-        var abouts =  await _context.Abouts.ToListAsync();
-        if (abouts == null && !abouts.Any())
-        {
-            throw new Exception("About not found");
-        }
+        var abouts = await _context.Abouts.ToListAsync();
         return abouts;
     }
-   
+
     public async Task<About> AddAbout(About about)
     {
         try
