@@ -1,4 +1,9 @@
 ﻿@model MyPortfolio.DAL.Entities.About
+@{
+    string base64Image = Model.MyPhoto != null
+        ? "data:image/*;base64," + Convert.ToBase64String(Model.MyPhoto)
+        : "";
+}
 
 <!-- about section -->
 <section class="section pt-0" id="about">
@@ -7,7 +12,7 @@
         <!-- about wrapper -->
         <div class="about">
             <div class="about-img-holder">
-                <img src="/meyawo-1.0.0/assets/imgs/Ben.png" class="about-img"
+                <img src="@base64Image" class="about-img"
                      alt="Profile img.">
             </div>
             <div class="about-caption">

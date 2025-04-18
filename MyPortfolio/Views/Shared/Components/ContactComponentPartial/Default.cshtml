@@ -1,4 +1,8 @@
-﻿<<section class="section" id="contact">
+﻿@{
+    var successMessage = TempData["SuccessMessage"] as string;
+}
+
+<<section class="section" id="contact">
     <div class="container text-center">
         <h6 class="section-title mb-5">Düşüncelerini Benimle Paylaşmak İstermisin?</h6>
         <!-- contact form -->
@@ -8,15 +12,137 @@
                     <input type="text" name="FirstName" class="form-control" placeholder="İsim" required>
                 </div>
                 <div class="form-group col-sm-6">
-                    <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                    <input type="email" id="emailInput" name="Email" class="form-control" placeholder="Email" required>
+                    <small id="emailError" class="text-danger d-none">Geçersiz eposta adresi veya izin verilmeyen domain.</small>
                 </div>
                 <div class="form-group col-sm-12">
-                    <textarea name="Message" rows="6" class="form-control" placeholder="Bu Alana Yazabilirsin." required></textarea>
+                    <textarea name="Message" rows="6" class="form-control" placeholder="Bu Alana Yazabilirsin." required maxlength="400"></textarea>
                 </div>
                 <div class="form-group col-sm-12 mt-3">
                     <input type="submit" value="Send Message" class="btn btn-outline-success rounded">
+                    @if (!string.IsNullOrEmpty(successMessage))
+                    {
+                        <div id="formSuccessMsg" class="alert alert-success" role="alert">@successMessage</div>
+                    }
+                    <div id="formErrorMsg" class="alert alert-danger d-none" role="alert"></div>
                 </div>
             </div>
+
         </form><!-- end of contact form -->
     </div><!-- end of container -->
 </section><!-- end of contact section -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        let emailIsValid = false;
+
+        // E-posta kontrolü input değiştiğinde yapılır
+        $('#emailInput').on('input', function () {
+            const email = $(this).val();
+
+            if (email.length < 5) {
+                resetEmailFeedback();
+                emailIsValid = false;
+                return;
+            }
+
+            $.ajax({
+                url: '/Contact/ValidateEmail',
+                method: 'POST',
+                data: { email: email },
+                success: function (isValid) {
+                    const $input = $('#emailInput');
+                    const $feedback = $('#emailError');
+
+                    if (!isValid) {
+                        emailIsValid = false;
+                        $input.removeClass('is-valid').addClass('is-invalid');
+                        $feedback
+                            .removeClass('text-success d-none')
+                            .addClass('text-danger')
+                            .text('Geçersiz e-posta adresi veya izin verilmeyen domain.');
+                    } else {
+                        emailIsValid = true;
+                        $input.removeClass('is-invalid').addClass('is-valid');
+                        $feedback
+                            .removeClass('text-danger d-none')
+                            .addClass('text-success')
+                            .text('Geçerli e-posta adresi.');
+                    }
+                },
+                error: function () {
+                    console.log("Sunucu hatası, sayfayı yenileyip tekrar deneyin.");
+                }
+            });
+        });
+
+        function resetEmailFeedback() {
+            $('#emailInput').removeClass('is-valid is-invalid');
+            $('#emailError').addClass('d-none').text('');
+        }
+
+        // Form gönderme işlemi için input alanlarının kontrolü:
+        $('.contact-form').on('submit', function (e) {
+            const firstName = $('input[name="FirstName"]').val().trim();
+            const email = $('#emailInput').val().trim();
+            const message = $('textarea[name="Message"]').val().trim();
+
+            let isValid = true;
+
+            if (!firstName) {
+                isValid = false;
+                $('input[name="FirstName"]').addClass('is-invalid');
+            } else {
+                $('input[name="FirstName"]').removeClass('is-invalid');
+            }
+
+            if (!email || !emailIsValid) {
+                isValid = false;
+                $('#emailInput').addClass('is-invalid');
+                $('#emailError')
+                    .removeClass('d-none text-success')
+                    .addClass('text-danger')
+                    .text('Geçerli bir e-posta adresi giriniz.');
+            }
+
+            if (!message) {
+                isValid = false;
+                $('textarea[name="Message"]').addClass('is-invalid');
+            } else {
+                $('textarea[name="Message"]').removeClass('is-invalid');
+            }
+
+            if (!isValid) {
+                e.preventDefault(); // form gönderimini engeller
+                showFormError("Lütfen tüm alanları istenilen formatta doldurun.");
+            } else {
+                hideFormError();
+            }
+        });
+
+        // ✅ Başarı mesajını 5 saniye sonra gizle
+        setTimeout(function () {
+            $('#formSuccessMsg').fadeOut('slow');
+        }, 5000);
+    });
+
+    function showFormError(message) {
+        $('#formErrorMsg')
+            .removeClass('d-none')
+            .text(message);
+
+        // 5 saniye sonra otomatik gizle
+        setTimeout(() => {
+            $('#formErrorMsg').addClass('d-none');
+        }, 5000);
+    }
+
+    function hideFormError() {
+        $('#formErrorMsg').addClass('d-none').text('');
+    }
+</script>
+
+
+

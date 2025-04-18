@@ -33,6 +33,7 @@
                                     <tr>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
                                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().SubDescription)</th>
+                                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().MyPhoto)</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,17 @@
                                         <tr>
                                             <td>@Html.DisplayFor(itemModel => item.Title)</td>
                                             <td>@Html.DisplayFor(itemModel => item.SubDescription)</td>
+                                            <td>
+                                                @if (item.MyPhoto != null)
+                                                {
+                                                    var base64Image = "data:image/*;base64," + Convert.ToBase64String(item.MyPhoto);
+                                                    <img src="@base64Image" alt="My Photo" style="max-width: 100px; max-height: 100px; object-fit: cover; display: block; margin: 0 auto;" />
+                                                }
+                                                else
+                                                {
+                                                    <span>No Photo</span>
+                                                }
+                                            </td>
                                             <td class="action-buttons">
                                                 <a href="@Url.Action("Update", "About", new { id = item.AboutId })" class="btn btn-warning btn-sm update-btn">Update</a>
                                                 <a href="@Url.Action("Delete", "About", new { id = item.AboutId })" class="btn btn-danger btn-sm delete-btn">Delete</a>
@@ -61,4 +73,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+<style>
 
+</style>

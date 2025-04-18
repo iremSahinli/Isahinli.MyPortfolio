@@ -24,7 +24,8 @@ public class AboutController : Controller
         {
             AboutId = model.AboutId,
             Title = model.Title,
-            SubDescription = model.SubDescription
+            SubDescription = model.SubDescription,
+            MyPhoto = model.MyPhoto
         }).ToList();
         return View(aboutVm);
     }
@@ -43,11 +44,22 @@ public class AboutController : Controller
         {
             return View(adminAboutCreateVM);
         }
+
+        byte[] photoBytes = null;
+        if (adminAboutCreateVM.MyPhoto != null && adminAboutCreateVM.MyPhoto.Length > 0)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await adminAboutCreateVM.MyPhoto.CopyToAsync(memoryStream);
+                photoBytes = memoryStream.ToArray();
+            }
+        }
         var aboutCreateVM = new About
         {
-            AboutId = new int(),
+
             Title = adminAboutCreateVM.Title,
-            SubDescription = adminAboutCreateVM.SubDescription
+            SubDescription = adminAboutCreateVM.SubDescription,
+            MyPhoto = photoBytes
         };
         await _aboutRepository.AddAbout(aboutCreateVM);
         return RedirectToAction("Index");
@@ -61,7 +73,8 @@ public class AboutController : Controller
         {
             AboutId = about.AboutId,
             Title = about.Title,
-            SubDescription = about.SubDescription
+            SubDescription = about.SubDescription,
+            ExistingMyPhoto = about.MyPhoto != null ? $"data:image/*;base64,{Convert.ToBase64String(about.MyPhoto)}" : null,
         };
         return View(aboutVm);
     }
@@ -81,6 +94,14 @@ public class AboutController : Controller
 
         updatedAbout.Title = adminAboutUpdateVM.Title;
         updatedAbout.SubDescription = adminAboutUpdateVM.SubDescription;
+        if (adminAboutUpdateVM.MyPhoto != null && adminAboutUpdateVM.MyPhoto.Length > 0)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await adminAboutUpdateVM.MyPhoto.CopyToAsync(memoryStream);
+                updatedAbout.MyPhoto = memoryStream.ToArray();
+            }
+        }
 
         var updatingAbout = await _aboutRepository.UpdateAbout(updatedAbout);
         return RedirectToAction("Index");
